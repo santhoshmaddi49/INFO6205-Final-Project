@@ -8,7 +8,8 @@ public class InsertionSort {
                 swap(a, j, j - 1);
     }
 
-    private static boolean less(String v, String w, int d) {
+    private static boolean less(String v, String w, int d)
+    {
         return v.substring(d).compareTo(w.substring(d)) < 0;
     }
 

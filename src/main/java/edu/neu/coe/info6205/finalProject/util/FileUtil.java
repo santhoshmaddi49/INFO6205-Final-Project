@@ -26,7 +26,7 @@ public class FileUtil {
                 BufferedReader bufferedReader = new BufferedReader(fileReader);)
         {
 
-            bufferedReader.readLine(); //Skip the header line
+            //bufferedReader.readLine(); //Skip the header line
             while ((line = bufferedReader.readLine()) != null)
             {
                 data.add(line);
@@ -63,3 +63,24 @@ public class FileUtil {
         }
     }
 }
+
+/*
+<dependencies>
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.13.2</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-api</artifactId>
+        <version>2.14.1</version>
+    </dependency>
+    <dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>1.2.17</version>
+    </dependency>
+    </dependencies>
+* */

@@ -14,7 +14,7 @@ public class MSDRadixSort {
     public static void sort(String[] a) {
         int n = a.length;
         aux = new String[n];
-        sort(a, 0, n, 0);
+        sort(a, 0, n-1, 0);
     }
 
     /**
@@ -27,24 +27,29 @@ public class MSDRadixSort {
      * @param d the number of characters in each String to be skipped.
      */
     private static void sort(String[] a, int lo, int hi, int d) {
-        if (hi < lo + cutoff)
+//        if (hi < lo + cutoff)
+//
+//            InsertionSort.sort(a, lo, hi, d);
+        if(hi<=lo) return;
 
-            InsertionSort.sort(a, lo, hi, d);
-        else {
-            int[] count = new int[radix + 2];        // Compute frequency counts.
-            for (int i = lo; i < hi; i++)
-                count[charAt(a[i], d) + 2]++;
-            for (int r = 0; r < radix + 1; r++)      // Transform counts to indices.
-                count[r + 1] += count[r];
-            for (int i = lo; i < hi; i++)     // Distribute.
-                aux[count[charAt(a[i], d) + 1]++] = a[i];
-            // Copy back.
-            if (hi - lo >= 0) System.arraycopy(aux, 0, a, lo, hi - lo);
-
-            // Recursively sort for each character value.
-            for (int r = 0; r < radix; r++)
-                sort(a, lo + count[r], lo + count[r+1] - 1, d+1);
+        int[] count = new int[radix + 2];        // Compute frequency counts.
+        for (int i = lo; i <= hi; i++) {
+            if (d < a[i].length()) System.out.println(charAt(a[i], d) + " " + a[i].charAt(d) + " " + d + " " + a[i]);
+            count[charAt(a[i], d) + 2]++;
         }
+        for (int r = 0; r < radix + 1; r++)      // Transform counts to indices.
+            count[r + 1] += count[r];
+
+        for (int i = lo; i <= hi; i++)     // Distribute.
+            aux[count[charAt(a[i], d) + 1]++] = a[i];
+        // Copy back.
+        for (int i = lo; i <= hi; i++)
+            a[i] = aux[i - lo];
+
+        // Recursively sort for each character value.
+        for (int r = 0; r < radix; r++)
+            sort(a, lo + count[r], lo + count[r+1] - 1, d+1);
+
     }
 
     private static int charAt(String s, int d) {
@@ -52,8 +57,8 @@ public class MSDRadixSort {
         else return -1;
     }
 
-    private static final int radix = 256;
-    private static final int cutoff = 15;
+    private static final int radix = 65536;
+    //private static final int cutoff = 15;
     private static String[] aux;       // auxiliary array for distribution
 }
 
