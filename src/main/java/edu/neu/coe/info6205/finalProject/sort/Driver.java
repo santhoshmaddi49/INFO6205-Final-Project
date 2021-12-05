@@ -1,11 +1,12 @@
 package edu.neu.coe.info6205.finalProject.sort;
 
-import edu.neu.coe.info6205.finalProject.benchMark.Benchmark;
-import edu.neu.coe.info6205.finalProject.benchMark.Benchmark_Timer;
+
 import edu.neu.coe.info6205.finalProject.util.ChineseComparator;
 import edu.neu.coe.info6205.finalProject.util.FileUtil;
 import edu.neu.coe.info6205.finalProject.util.PinyinComparator;
 import edu.neu.coe.info6205.finalProject.util.TeluguComparator;
+import edu.neu.coe.huskySort.sort.huskySort.PureHuskySort;
+import edu.neu.coe.huskySort.sort.huskySortUtils.HuskyCoderFactory;
 
 import java.text.Collator;
 import java.util.*;
@@ -38,7 +39,8 @@ public class Driver {
         String[] teluguWords1 =  Arrays.copyOf(teluguWords,teluguWords.length);
         String[] teluguWords2 =  Arrays.copyOf(teluguWords,teluguWords.length);
         String[] teluguWords3 =  Arrays.copyOf(teluguWords,teluguWords.length);
-        Collections.reverse(Arrays.asList(teluguWords3)); 
+        Collections.reverse(Arrays.asList(teluguWords3));
+        Collections.reverse(Arrays.asList(teluguWords1));
 
         String shuffledChineseFilePath = "./csvFiles/shuffledChinese.txt";
         //String shuffledChineseFilePath = "./csvFiles/sampleChineseShuffled.txt";
@@ -48,8 +50,10 @@ public class Driver {
         String[] chineseWords1 = Arrays.copyOf(chineseWords,chineseWords.length);
         String[] chineseWords2 = Arrays.copyOf(chineseWords,chineseWords.length);
         String[] chineseWords3 = Arrays.copyOf(chineseWords,chineseWords.length);
+        String[] chineseWords4 = Arrays.copyOf(chineseWords,chineseWords.length);
         //Collections.reverse(Arrays.asList(chineseWords1));
         //Collections.reverse(Arrays.asList(chineseWords3));
+        Collections.reverse(Arrays.asList(chineseWords4));
 
 
         String sortedChineseFilePath = "./csvFiles/sortedChinese.txt";
@@ -63,24 +67,25 @@ public class Driver {
         c = 0;
          for(int i = 0; i<chineseWords2.length;i++)
          {
-             if(chineseWords2[i] != chineseWords3[i])
+             if(chineseWords[i] != chineseWords4[i])
                  c++;
          }
          
          System.out.println(c + " Mismatches before sorted");
-//        //Timsort Chinese
+        //Timsort Chinese
         start = System.currentTimeMillis();
-        TimSort ts = new TimSort(new PinyinComparator());
+        TimSort ts = new TimSort(new ChineseComparator());
         ts.sort(chineseWords);
          end = System.currentTimeMillis();
          System.out.println("Tim chinese: " + (end - start) + "ms");
 //
 //        //Dual Pivot chinese
-        start = System.currentTimeMillis();
-        DualPivotQuickSort ds = new DualPivotQuickSort(new PinyinComparator());
-        ds.dualPivotQuickSort(chineseWords1);
-        end = System.currentTimeMillis();
-        System.out.println("dual pivot chinese: " + (end - start) + "ms");
+//        start = System.currentTimeMillis();
+//        DualPivotQuickSort ds = new DualPivotQuickSort(new PinyinComparator());
+//        ds.dualPivotQuickSort(chineseWords1);
+//        end = System.currentTimeMillis();
+//        System.out.println("dual pivot chinese: " + (end - start) + "ms");
+
 
 //      //Lsd chinese
 //      start = System.currentTimeMillis();
@@ -96,47 +101,43 @@ public class Driver {
 //     System.out.println("MSD sort " +
 //            (end - start) + "ms");
 //
-//        //wordNode MSD sort
-//        start = System.currentTimeMillis();
-//        TestSort testSort = new TestSort();
-//        testSort.sort(chineseWords2);
-//        end = System.currentTimeMillis();
-//        System.out.println("Word Node MSD sort " +
-//                (end - start) + "ms");
+        //husky sort
 
-     //wordNode LSD sort
-//     start = System.currentTimeMillis();
-//     LSDWordNode lsdw = new LSDWordNode();
-//     lsdw.sort(chineseWords3);
-//     end = System.currentTimeMillis();
-//     System.out.println("WordNode LSD sort " +
-//             (end - start) + "ms");
+        start = System.currentTimeMillis();
 
+        PureHuskySort<String> pureHusky = new PureHuskySort<>(HuskyCoderFactory.chineseEncoder, false, false);
+        pureHusky.sort(chineseWords4);
+     end = System.currentTimeMillis();
+     System.out.println("Husky chinese " +
+            (end - start) + "ms");
+     
     c = 0;
     for(int i = 0; i<chineseWords2.length;i++)
     {
-        if(chineseWords[i] != chineseWords1[i])
+        if(chineseWords[i] != chineseWords4[i])
             c++;
     }
     System.out.println(c + " mismatches after sort");
 
 
-//        int c = 0;                                                                                                                          
-//        for(int i = 0; i<teluguWords.length;i++)                                                                                                    
-//        {                                                                                                                                           
-//            if(teluguWords[i].equals(teluguWords1[i]) && teluguWords[i].equals(teluguWords2[i]) && teluguWords[i].equals(teluguWords3[i]))          
-//            {                                                                                                                                       
-//                continue;                                                                                                                           
-//            }                                                                                                                               
-//            else{                                                                                                                                   // msd telugu
-//                //System.out.println(teluguWords[i] + "    " + teluguWords1[i]);                                                            //        start = System.currentTimeMillis();
-//                c++;                                                                                                                        //        MSDRadixSort.sort(teluguWords3);
-//            }                                                                                                                               //        end = System.currentTimeMillis();
-//                                                                                                                                            //        System.out.println("Msd telugu" + (end - start) + "ms");
-//        }                                                                                                                                   
-//        System.out.println(c);
+//        c = 0;
+//        for(int i = 0; i<teluguWords.length;i++)
+//        {
+//            if( !teluguWords[i].equals(teluguWords1[i]) )
+//            {
+//                c++;
+//            }
 //
+//
+//        }
+//        System.out.println(c + " mismatches before sorted");
 
+
+//Msd Telugu
+    //        start = System.currentTimeMillis();
+    //        MSDRadixSort.sort(teluguWords3);
+    //        end = System.currentTimeMillis();
+    //        System.out.println("Msd telugu" + (end - start) + "ms");
 
 
 
@@ -148,11 +149,11 @@ public class Driver {
 //        System.out.println("lsd telugu" + (end - start) + "ms");
 
         //Dual pivot  Telugu
-//        start = System.currentTimeMillis();
-//        DualPivotQuickSort dualPivotQuickSort = new DualPivotQuickSort(new TeluguComparator());
-//        dualPivotQuickSort.dualPivotQuickSort(teluguWords2);
-//        end = System.currentTimeMillis();
-//        System.out.println("dual pivot telugu" + (end - start) + "ms");
+        start = System.currentTimeMillis();
+        DualPivotQuickSort dualPivotQuickSort = new DualPivotQuickSort(new TeluguComparator());
+        dualPivotQuickSort.dualPivotQuickSort(teluguWords);
+        end = System.currentTimeMillis();
+        System.out.println("dual pivot telugu" + (end - start) + "ms");
 //
         //Timsort telugu
 //        start = System.currentTimeMillis();
@@ -160,17 +161,22 @@ public class Driver {
 //        ts.sort(teluguWords);
 //        end = System.currentTimeMillis();
 //        System.out.println("tim sort telugu" + (end - start) + "ms");
+
+        //Husky Telugu
+        start = System.currentTimeMillis();
+        PureHuskySort<String> pureHuskyTelugu = new PureHuskySort<>(HuskyCoderFactory.asciiCoder, false, false);
+        pureHuskyTelugu.sort(teluguWords1);
+        end = System.currentTimeMillis();
+        System.out.println("Husky telugu" + (end - start) + "ms");
+
+
 //
 //        c = 0;
 //        for(int i = 0; i<teluguWords.length;i++)
 //        {
-//            if(teluguWords[i].equals(teluguWords1[i]) && teluguWords[i].equals(teluguWords2[i]) && teluguWords[i].equals(teluguWords3[i]))
+//            if(!teluguWords[i].equals(teluguWords1[i]))
 //            {
-//               continue;
-//            }
-//            else{
-//                System.out.println(teluguWords[i] + "    " + teluguWords1[i]);
-//                c++;
+//             c++;
 //            }
 //
 //        }
