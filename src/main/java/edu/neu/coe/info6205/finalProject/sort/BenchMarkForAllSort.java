@@ -1,9 +1,13 @@
 package edu.neu.coe.info6205.finalProject.sort;
 
+import edu.neu.coe.huskySort.sort.huskySort.PureHuskySort;
+import edu.neu.coe.huskySort.sort.huskySortUtils.HuskyCoderFactory;
 import edu.neu.coe.info6205.finalProject.benchMark.Benchmark;
 import edu.neu.coe.info6205.finalProject.benchMark.Benchmark_Timer;
 import edu.neu.coe.info6205.finalProject.util.*;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -11,24 +15,118 @@ import java.util.function.Supplier;
 public class BenchMarkForAllSort {
 
 
-    public static String[] teluguWordsFromFile(){
+    private static int arraySize = 1000000;
+
+    public static String[] randomTeluguWordsFromFile(){
 
         String filePath = "./csvFiles/TeluguWords.csv";
         FileUtil fileUtil = new FileUtil();
         List<String> teluguWordsList = fileUtil.readFile(filePath);
-        String[] teluguWords = new String[teluguWordsList.size()];
-        teluguWords = teluguWordsList.toArray(teluguWords);
+        int N = teluguWordsList.size();
+        String[] teluguWords = new String[arraySize];
+        for(int i = 0; i<arraySize;i++)
+            teluguWords[i] =teluguWordsList.get(i%N);
         return teluguWords;
 
     }
 
-    public static String[] chineseWordsFromFile(){
+    public static String[] sortedTeluguWordsFromFile(){
+
+        String filePath = "./csvFiles/TeluguWords.csv";
+        FileUtil fileUtil = new FileUtil();
+        List<String> teluguWordsList = fileUtil.readFile(filePath);
+        int N = teluguWordsList.size();
+        String[] teluguWords = new String[arraySize];
+        for(int i = 0; i<arraySize;i++)
+            teluguWords[i] =teluguWordsList.get(i%N);
+        Arrays.sort(teluguWords);
+        return teluguWords;
+
+    }
+
+    public static String[] partiallySortedTeluguWordsFromFile(){
+
+        String filePath = "./csvFiles/TeluguWords.csv";
+        FileUtil fileUtil = new FileUtil();
+        List<String> teluguWordsList = fileUtil.readFile(filePath);
+        int N = teluguWordsList.size();
+        String[] teluguWords = new String[arraySize];
+        for(int i = 0; i<arraySize;i++)
+            teluguWords[i] =teluguWordsList.get(i%N);
+        Arrays.sort(teluguWords, 0, arraySize/2);
+        return teluguWords;
+
+    }
+
+    public static String[] reverseOrderTeluguWordsFromFile(){
+
+        String filePath = "./csvFiles/TeluguWords.csv";
+        FileUtil fileUtil = new FileUtil();
+        List<String> teluguWordsList = fileUtil.readFile(filePath);
+        int N = teluguWordsList.size();
+        String[] teluguWords = new String[arraySize];
+        for(int i = 0; i<arraySize;i++)
+            teluguWords[i] =teluguWordsList.get(i%N);
+        Collections.reverse(Arrays.asList(teluguWords));
+        return teluguWords;
+
+    }
+
+    public static String[] randomchineseWordsFromFile(){
 
         String filePath = "./csvFiles/shuffledChinese.txt";
         FileUtil fileUtil = new FileUtil();
         List<String> chineseWordsList = fileUtil.readFile(filePath);
-        String[] chineseWords = new String[chineseWordsList.size()];
-        chineseWords = chineseWordsList.toArray(chineseWords);
+
+        int N = chineseWordsList.size();
+        String[] chineseWords = new String[arraySize];
+        for(int i = 0; i<arraySize;i++)
+            chineseWords[i] =chineseWordsList.get(i%N);
+
+        return chineseWords;
+
+    }
+
+    public static String[] sortedChineseWordsFromFile(){
+
+        String filePath = "./csvFiles/shuffledChinese.txt";
+        FileUtil fileUtil = new FileUtil();
+        List<String> chineseWordsList = fileUtil.readFile(filePath);
+
+        int N = chineseWordsList.size();
+        String[] chineseWords = new String[arraySize];
+        for(int i = 0; i<arraySize;i++)
+            chineseWords[i] =chineseWordsList.get(i%N);
+        Arrays.sort(chineseWords, new ChineseComparator() );
+        return chineseWords;
+
+    }
+    public static String[] partialSortedChineseWordsFromFile(){
+
+        String filePath = "./csvFiles/shuffledChinese.txt";
+        FileUtil fileUtil = new FileUtil();
+        List<String> chineseWordsList = fileUtil.readFile(filePath);
+
+        int N = chineseWordsList.size();
+        String[] chineseWords = new String[arraySize];
+        for(int i = 0; i<arraySize;i++)
+            chineseWords[i] =chineseWordsList.get(i%N);
+        Arrays.sort(chineseWords, 0, arraySize/2, new ChineseComparator());
+        return chineseWords;
+
+    }
+    public static String[] reverseOrderchineseWordsFromFile(){
+
+        String filePath = "./csvFiles/shuffledChinese.txt";
+        FileUtil fileUtil = new FileUtil();
+        List<String> chineseWordsList = fileUtil.readFile(filePath);
+
+        int N = chineseWordsList.size();
+        String[] chineseWords = new String[arraySize];
+        for(int i = 0; i<arraySize;i++)
+            chineseWords[i] =chineseWordsList.get(i%N);
+
+        Collections.reverse(Arrays.asList(chineseWords));
         return chineseWords;
 
     }
@@ -37,52 +135,82 @@ public class BenchMarkForAllSort {
 
         Benchmark<String[]> benchmark = new Benchmark_Timer<>(description, fun);
         double time = benchmark.runFromSupplier(supplier,m);
-        System.out.println(description +": " + time + "ms");
+        System.out.println("Time Taken: " +time + "ms");
+
+    }
+
+    public static void runAllBenchmarksTelugu(String sort, Consumer<String[]> fun, int m){
+
+        String description = "Benchmark for " + sort + " sort for " + arraySize + " random order telugu elements";
+        runBenchmark(description,fun,BenchMarkForAllSort::randomTeluguWordsFromFile,m);
+
+        description = "Benchmark for " + sort + " sort for " + arraySize + " sorted order telugu elements";
+        runBenchmark(description,fun,BenchMarkForAllSort::sortedTeluguWordsFromFile,m);
+
+        description = "Benchmark for " + sort + " sort for " + arraySize  + " partial sorted order telugu elements";
+        runBenchmark(description,fun,BenchMarkForAllSort::partialSortedChineseWordsFromFile,m);
+
+        description = "Benchmark for " + sort + " sort for " + arraySize  + " reverse order telugu elements";
+        runBenchmark(description,fun,BenchMarkForAllSort::reverseOrderTeluguWordsFromFile,m);
+
+    }
+
+    public static void runAllBenchmarksChinese(String sort, Consumer<String[]> fun, int m){
+
+        String description = "Benchmark for " + sort + " sort for " + arraySize + " random order chinese elements";
+        runBenchmark(description,fun,BenchMarkForAllSort::randomchineseWordsFromFile,m);
+
+        description = "Benchmark for " + sort + " sort for " + arraySize + " sorted order chinese elements";
+        runBenchmark(description,fun,BenchMarkForAllSort::sortedChineseWordsFromFile,m);
+
+        description = "Benchmark for " + sort + " sort for " + arraySize + " partial sorted order chinese elements";
+        runBenchmark(description,fun,BenchMarkForAllSort::partialSortedChineseWordsFromFile,m);
+
+        description = "Benchmark for " + sort + " sort for " + arraySize + " reverse order chinese elements";
+        runBenchmark(description,fun,BenchMarkForAllSort::reverseOrderchineseWordsFromFile,m);
 
     }
 
     public static void main(String[] args) {
-        
-        DualPivotQuickSort dp = new DualPivotQuickSort(new TeluguComparator());
-        String description = "Benchmark of dual pivot quick sort with 1 million random order telugu words";
-        runBenchmark(description,dp::dualPivotQuickSort,BenchMarkForAllSort::teluguWordsFromFile,5);
-        //performBenchmark("dual pivot sort for chinese words", dp::dualPivotQuickSort,BenchMarkForAllSort::chineseWordsFromFile,1);
-
-        DualPivotQuickSort dpChinese = new DualPivotQuickSort(new ChineseComparator());
-        String descr = "Benchmark of dual pivot quick sort with 1 million random order chinese words";
-        runBenchmark(descr, dpChinese::dualPivotQuickSort, BenchMarkForAllSort:: chineseWordsFromFile, 5);
-
-        TimSort tm = new TimSort(new ChineseComparator());
-        String descriptionTim = "Benchmark of Tim sort with 1 million random order chinese words";
-        runBenchmark(descriptionTim,tm::sort,BenchMarkForAllSort::chineseWordsFromFile,5);
 
 
-        TimSort tmTelugu = new TimSort(new TeluguComparator());
-        String descriptionTimTelugu = "Benchmark of Tim sort with 1 million random order chinese words";
-        runBenchmark(descriptionTimTelugu,tmTelugu::sort,BenchMarkForAllSort::teluguWordsFromFile,5);
+        // Msd Sort for Telugu strings
+        runAllBenchmarksTelugu("Msd radix",MSDRadixSort::sort,5);
+
+        // Lsd Sort for Telugu strings
+        LSDRadixSort lsdRadixSort = new LSDRadixSort();
+        runAllBenchmarksTelugu("Lsd radix",lsdRadixSort::sort,5);
+
+        // Tim Sort for Telugu strings
+        TimSort timSort = new TimSort(new TeluguComparator());
+        runAllBenchmarksTelugu("Tim",timSort::sort,5);
+
+        // Husky sort for Telugu
+        PureHuskySort<String> pureHuskyTelugu = new PureHuskySort<>(HuskyCoderFactory.asciiCoder, false, false);
+        runAllBenchmarksTelugu("Husky",pureHuskyTelugu::sort,5);
+
+        // Dual pivot quick Sort for Telugu strings
+        DualPivotQuickSort dualPivot = new DualPivotQuickSort(new TeluguComparator());
+        runAllBenchmarksTelugu("Dual pivot quick",dualPivot::dualPivotQuickSort,5);
 
 
-        String descrTelugu = "Benchmark of MSD Radix sort with 1 million random order telugu words";
-        runBenchmark(descrTelugu,MSDRadixSort::sort,BenchMarkForAllSort::teluguWordsFromFile,5);
+        // Msd Sort for Chinese strings
+        runAllBenchmarksChinese("Msd radix",MSDRadixSort::sort,5);
 
-        String descrChineseMSD = "Benchmark of MSD Radix sort with 1 million random order telugu words";
-        runBenchmark(descrChineseMSD,MSDRadixSortChinese::sort,BenchMarkForAllSort::chineseWordsFromFile,5);
+        // Lsd Sort for Chinese strings
+        runAllBenchmarksChinese("Lsd radix",lsdRadixSort::sort,5);
 
-        LSDRadixSort lsdTelugu = new LSDRadixSort();
-        String descrTeluguLsd = "Benchmark of LSD Radix sort with 1 million random order telugu words";
-        runBenchmark(descrTeluguLsd, lsdTelugu::sort,BenchMarkForAllSort::teluguWordsFromFile,5);
+        // Tim Sort for Chinese strings
+        timSort = new TimSort(new ChineseComparator());
+        runAllBenchmarksChinese("Tim",timSort::sort,5);
 
-        LSDRadixSortChinese lsdRadixSortChinese = new LSDRadixSortChinese();
-        String descrLSDChinese = "Benchmark of LSD Radix sort with 1 million random order chinese words";
-        runBenchmark(descrLSDChinese, lsdRadixSortChinese::sort,BenchMarkForAllSort::chineseWordsFromFile,5);
+        // Husky sort for Chinese
+        PureHuskySort<String> pureHuskyChinese = new PureHuskySort<>(HuskyCoderFactory.asciiCoder, false, false);
+        runAllBenchmarksChinese("Husky",pureHuskyChinese::sort,5);
 
-
-
-
-
-
-
-
+        // Dual pivot quick Sort for Chinese strings
+        dualPivot = new DualPivotQuickSort(new ChineseComparator());
+        runAllBenchmarksChinese("Dual pivot quick",dualPivot::dualPivotQuickSort,5);
 
 
     }

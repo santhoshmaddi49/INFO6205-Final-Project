@@ -1,3 +1,31 @@
 2021-12-03 15:18:55 INFO  Benchmark_Timer - Begin run: Mad radix sort for chinese words with 1 runs
 2021-12-03 15:19:38 INFO  Benchmark_Timer - Begin run: Mad radix sort for chinese words with 1 runs
 2021-12-03 15:45:45 INFO  Benchmark_Timer - Begin run: Mad radix sort for chinese words with 1 runs
+2021-12-05 13:47:09 INFO  Benchmark_Timer - Begin run: Benchmark for Msd radix sort for 1000000 random order elements with 5 runs
+2021-12-05 13:47:11 INFO  Benchmark_Timer - Begin run: Benchmark for Msd radix sort for 1000000 random order elements sorted order elements with 5 runs
+2021-12-05 13:48:20 INFO  Benchmark_Timer - Begin run: Benchmark for Msd radix sort for 1000000 random order telugu elements with 5 runs
+2021-12-05 13:48:22 INFO  Benchmark_Timer - Begin run: Benchmark for Msd radix sort for 1000000 random order telugu elements sorted order telugu elements with 5 runs
+2021-12-05 13:48:25 INFO  Benchmark_Timer - Begin run: Benchmark for Msd radix sort for 1000000 random order telugu elements sorted order telugu elements partial sorted order telugu elements with 5 runs
+2021-12-05 13:49:46 INFO  Benchmark_Timer - Begin run: Benchmark for Msd radix sort for 1000000 random order telugu elements sorted order telugu elements partial sorted order telugu elements reverse order telugu elements with 5 runs
+2021-12-05 13:49:48 INFO  Benchmark_Timer - Begin run: Benchmark for Lsd radix sort for 1000000 random order telugu elements with 5 runs
+2021-12-05 13:49:51 INFO  Benchmark_Timer - Begin run: Benchmark for Lsd radix sort for 1000000 random order telugu elements sorted order telugu elements with 5 runs
+2021-12-05 13:49:59 INFO  Benchmark_Timer - Begin run: Benchmark for Msd radix sort for 1000000 random order telugu elements with 5 runs
+2021-12-05 13:50:01 INFO  Benchmark_Timer - Begin run: Benchmark for Msd radix sort for 1000000 random order telugu elements sorted order telugu elements with 5 runs
+2021-12-05 13:50:05 INFO  Benchmark_Timer - Begin run: Benchmark for Msd radix sort for 1000000 random order telugu elements sorted order telugu elements partial sorted order telugu elements with 5 runs
+2021-12-05 13:51:30 INFO  Benchmark_Timer - Begin run: Benchmark for Msd radix sort for 1000000 random order telugu elements sorted order telugu elements partial sorted order telugu elements reverse order telugu elements with 5 runs
+2021-12-05 13:51:32 INFO  Benchmark_Timer - Begin run: Benchmark for Lsd radix sort for 1000000 random order telugu elements with 5 runs
+2021-12-05 13:51:35 INFO  Benchmark_Timer - Begin run: Benchmark for Lsd radix sort for 1000000 random order telugu elements sorted order telugu elements with 5 runs
+2021-12-05 13:51:40 INFO  Benchmark_Timer - Begin run: Benchmark for Lsd radix sort for 1000000 random order telugu elements sorted order telugu elements partial sorted order telugu elements with 5 runs
+2021-12-05 13:52:21 INFO  Benchmark_Timer - Begin run: Benchmark for Lsd radix sort for 1000000 random order telugu elements sorted order telugu elements partial sorted order telugu elements reverse order telugu elements with 5 runs
+2021-12-05 13:52:24 INFO  Benchmark_Timer - Begin run: Benchmark for Tim sort for 1000000 random order telugu elements with 5 runs
+2021-12-05 13:53:16 INFO  Benchmark_Timer - Begin run: Benchmark for Msd radix sort for 1000000 random order telugu elements with 5 runs
+2021-12-05 13:53:18 INFO  Benchmark_Timer - Begin run: Benchmark for Msd radix sort for 1000000 random order telugu elements sorted order telugu elements with 5 runs
+2021-12-05 13:57:33 INFO  Benchmark_Timer - Begin run: Benchmark for Msd radix sort for 1000000 random order telugu elements with 5 runs
+2021-12-05 13:57:35 INFO  Benchmark_Timer - Begin run: Benchmark for Msd radix sort for 1000000 sorted order telugu elements with 5 runs
+2021-12-05 13:57:38 INFO  Benchmark_Timer - Begin run: Benchmark for Msd radix sort for 1000000 partial sorted order telugu elements with 5 runs
+2021-12-05 13:58:58 INFO  Benchmark_Timer - Begin run: Benchmark for Msd radix sort for 1000000 reverse order telugu elements with 5 runs
+2021-12-05 13:59:00 INFO  Benchmark_Timer - Begin run: Benchmark for Lsd radix sort for 1000000 random order telugu elements with 5 runs
+2021-12-05 13:59:02 INFO  Benchmark_Timer - Begin run: Benchmark for Lsd radix sort for 1000000 sorted order telugu elements with 5 runs
+2021-12-05 13:59:07 INFO  Benchmark_Timer - Begin run: Benchmark for Lsd radix sort for 1000000 partial sorted order telugu elements with 5 runs
+2021-12-05 13:59:48 INFO  Benchmark_Timer - Begin run: Benchmark for Lsd radix sort for 1000000 reverse order telugu elements with 5 runs
+2021-12-05 13:59:51 INFO  Benchmark_Timer - Begin run: Benchmark for Tim sort for 1000000 random order telugu elements with 5 runs
