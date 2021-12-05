@@ -34,7 +34,7 @@ public class MSDRadixSort {
 
         int[] count = new int[radix + 2];        // Compute frequency counts.
         for (int i = lo; i <= hi; i++) {
-            if (d < a[i].length()) System.out.println(charAt(a[i], d) + " " + a[i].charAt(d) + " " + d + " " + a[i]);
+            //if (d < a[i].length()) System.out.println(charAt(a[i], d) + " " + a[i].charAt(d) + " " + d + " " + a[i]);
             count[charAt(a[i], d) + 2]++;
         }
         for (int r = 0; r < radix + 1; r++)      // Transform counts to indices.

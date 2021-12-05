@@ -29,12 +29,13 @@ public class Benchmark_Timer<T> implements Benchmark<T> {
     @Override
     public double runFromSupplier(Supplier<T> supplier, int m) {
         logger.info("Begin run: " + description + " with " + m + " runs");
+        System.out.println("Begin run: " + description + " with " + m + " runs");
         // Warmup phase
         final Function<T, T> function = t -> {
             fRun.accept(t);
             return t;
         };
-        new Timer().repeat(getWarmupRuns(m), supplier, function, fPre, null);
+        //new Timer().repeat(getWarmupRuns(m), supplier, function, fPre, null);
 
         // Timed phase
         return new Timer().repeat(m, supplier, function, fPre, fPost);

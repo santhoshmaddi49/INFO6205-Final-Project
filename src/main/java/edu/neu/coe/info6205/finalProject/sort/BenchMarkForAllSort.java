@@ -2,12 +2,9 @@ package edu.neu.coe.info6205.finalProject.sort;
 
 import edu.neu.coe.info6205.finalProject.benchMark.Benchmark;
 import edu.neu.coe.info6205.finalProject.benchMark.Benchmark_Timer;
-import edu.neu.coe.info6205.finalProject.util.FileUtil;
+import edu.neu.coe.info6205.finalProject.util.*;
 
-import java.text.Collator;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Locale;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -36,31 +33,21 @@ public class BenchMarkForAllSort {
 
     }
 
-    static void performBenchmark(String description, Consumer<String[]> fun, Supplier<String[]> supplier){
+    static void performBenchmark(String description, Consumer<String[]> fun, Supplier<String[]> supplier, int m){
 
         Benchmark<String[]> benchmark = new Benchmark_Timer<>(description, fun);
-        double time = benchmark.runFromSupplier(supplier, 10);
+        double time = benchmark.runFromSupplier(supplier,m);
         System.out.println(description +": " + time + "ms");
 
     }
 
     public static void main(String[] args) {
+        
+        DualPivotQuickSort dp = new DualPivotQuickSort(new ChineseComparator());
+        //performBenchmark("dual pivot sort for chinese words", dp::dualPivotQuickSort,BenchMarkForAllSort::chineseWordsFromFile,1);
 
-        //String description = "Benchmark for Msd radix sort";
-        //final Benchmark<String[]> msdBenchmark = new Benchmark_Timer<>(description , MSDRadixSort::sort);
-//        double time = msdBenchmark.runFromSupplier(BenchMarkForAllSort::teluguWordsFromFile, 10);
-//        System.out.println(description +": " + time + "ms");
-
-        Comparator<String> cmpChinese = (s1, s2) -> {
-            Collator collator = Collator.getInstance(Locale.CHINESE);
-            return collator.compare(s1, s2);
-        };
-        DualPivotQuickSort dualPivotQuickSort = new DualPivotQuickSort(cmpChinese);
-
-        performBenchmark("Chinese 1 million words", dualPivotQuickSort::dualPivotQuickSort,BenchMarkForAllSort::chineseWordsFromFile);
-
-
-
+        TimSort tm = new TimSort(new ChineseComparator());
+        //performBenchmark("Timsort for chinese words", tm::dualPivotQuickSort,BenchMarkForAllSort::chineseWordsFromFile,1);
 
     }
 }

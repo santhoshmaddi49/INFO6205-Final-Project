@@ -29,4 +29,20 @@ public class PinyinHelperClass {
         }
         return pinyinChineseWords;
     }
+
+    public static String chineseToPinyan(String chineseWord){
+
+        String pinyinChineseWord = "";
+        try {
+            HanyuPinyinOutputFormat pinyinDefaultFormat = new HanyuPinyinOutputFormat();
+            pinyinDefaultFormat.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
+            pinyinDefaultFormat.setCaseType(HanyuPinyinCaseType.LOWERCASE);
+            pinyinChineseWord = PinyinHelper.toHanYuPinyinString(chineseWord, pinyinDefaultFormat, "", true);
+        }
+        catch (BadHanyuPinyinOutputFormatCombination e){
+            e.printStackTrace();
+        }
+
+        return pinyinChineseWord;
+    }
 }

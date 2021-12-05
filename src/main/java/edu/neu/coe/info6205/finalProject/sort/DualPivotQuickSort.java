@@ -7,7 +7,8 @@ import java.util.Comparator;
 public class DualPivotQuickSort{
 
     private Comparator<String> cmp;
-    DualPivotQuickSort(Comparator<String> cmp){
+    DualPivotQuickSort(Comparator<String> cmp)
+    {
         this.cmp = cmp;
     }
     public void swap(String[] arr, int i, int j)
@@ -93,20 +94,4 @@ public class DualPivotQuickSort{
         return new int[] { j, g };
     }
 
-    // Driver code
-//    public static void main(String[] args)
-//    {
-//        int[] arr = { 24, 8, 42, 75, 29, 77, 38, 57 };
-//
-//        dualPivotQuickSort(arr, 0, 7);
-//
-//        System.out.print("Sorted array: ");
-//        for (int i = 0; i < 8; i++)
-//            System.out.print(arr[i] + " ");
-//
-//        System.out.println();
-//    }
 }
-
-// This code is contributed by Gourish Sadhu
-

@@ -57,12 +57,19 @@ public class LSDRadixSort {
         // distribute
         for (int i = from; i <= to; i++) {
             int c = charUnicodeVal(strArr[i], charPosition);
-            result[count[c + 1]++] = strArr[i];
+            result[count[c + 1]] = strArr[i];
+            count[c + 1]++;
         }
 
+        for (int i = from; i <= to; i++)
+        {
+            strArr[i] = result[i-from];
+//            pinyinWords[i] = pinyinAux[i - lo];
+//            chineseWords[i] = chineseAux[i - lo];
+        }
         // copy back
-        if (to + 1 - from >= 0)
-            System.arraycopy(result, 0, strArr, from, to + 1 - from);
+//        if (to + 1 - from >= 0)
+//            System.arraycopy(result, 0, strArr, from, to + 1 - from);
     }
 
     /**
