@@ -10,7 +10,7 @@ public class LSDRadixSortChineseTest extends TestCase {
 
     @Test
     public void testRandomChineseWordsSort() throws Exception{
-        String[] unsortedArray = { "阿斌", "阿安", "阿彬", "阿滨", "阿兵", "阿冰", "阿婵", "阿冰冰", "阿朝", "阿超"};
+        String[] unsortedArray = {"阿安", "阿斌", "阿滨", "阿彬", "阿冰", "阿冰冰", "阿婵", "阿超", "阿朝","阿兵"};
         String[] sortedArray = {"阿安", "阿斌", "阿滨", "阿彬", "阿冰", "阿兵", "阿冰冰", "阿婵", "阿超", "阿朝"};
 
         LSDRadixSortChinese lsdRadixSortChinese=new LSDRadixSortChinese();
@@ -23,7 +23,7 @@ public class LSDRadixSortChineseTest extends TestCase {
 
     @Test
     public void testSortedChineseWordsSort() throws Exception{
-        String[] unsortedArray = { "阿安", "阿斌", "阿滨", "阿彬", "阿冰", "阿兵", "阿冰冰", "阿婵", "阿超", "阿朝"};
+        String[] unsortedArray = {"阿安", "阿斌", "阿滨", "阿彬", "阿冰", "阿冰冰", "阿婵", "阿超", "阿朝","阿兵"};
         String[] sortedArray = {"阿安", "阿斌", "阿滨", "阿彬", "阿冰", "阿兵", "阿冰冰", "阿婵", "阿超", "阿朝"};
 
         LSDRadixSortChinese lsdRadixSortChinese=new LSDRadixSortChinese();
@@ -35,7 +35,7 @@ public class LSDRadixSortChineseTest extends TestCase {
     }
     @Test
     public void testReverseSortedChineseWordsSort() throws Exception{
-        String[] unsortedArray = { "阿朝", "阿超", "阿婵", "阿冰冰", "阿兵", "阿冰", "阿彬", "阿滨", "阿斌", "阿安"};
+        String[] unsortedArray = { "阿朝", "阿超", "阿婵", "阿冰冰", "阿兵", "阿冰", "阿彬", "阿滨", "阿斌" };
         String[] sortedArray = {"阿安", "阿斌", "阿滨", "阿彬", "阿冰", "阿兵", "阿冰冰", "阿婵", "阿超", "阿朝"};
 
         LSDRadixSortChinese lsdRadixSortChinese=new LSDRadixSortChinese();
@@ -47,7 +47,7 @@ public class LSDRadixSortChineseTest extends TestCase {
     }
     @Test
     public void testPartiallySortedChineseWordsSort() throws Exception{
-        String[] unsortedArray = { "阿安", "阿斌", "阿滨", "阿彬", "阿冰", "阿冰冰", "阿兵", "阿超", "阿婵", "阿朝"};
+        String[] unsortedArray = {"阿安", "阿斌", "阿滨", "阿彬", "阿冰", "阿冰冰", "阿婵", "阿超", "阿朝","阿兵"};
         String[] sortedArray = {"阿安", "阿斌", "阿滨", "阿彬", "阿冰", "阿兵", "阿冰冰", "阿婵", "阿超", "阿朝"};
 
         LSDRadixSortChinese lsdRadixSortChinese=new LSDRadixSortChinese();
