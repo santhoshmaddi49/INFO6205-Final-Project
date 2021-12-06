@@ -59,8 +59,8 @@ public class TimSortTest extends TestCase {
 
     @Test
     public void testRandomChineseWordsSort() throws Exception{
-        String[] unsortedArray = { "阿斌", "阿安", "阿彬", "阿滨", "阿兵", "阿冰", "阿婵", "阿冰冰", "阿朝", "阿超"};
-        String[] sortedArray = {"阿安", "阿斌", "阿滨", "阿彬", "阿冰", "阿兵", "阿冰冰", "阿婵", "阿超", "阿朝"};
+        String[] unsortedArray = {"阿冰","阿安", "阿斌", "阿兵", "阿朝", "阿冰冰", "阿超", "阿婵", "阿彬","阿滨"};
+        String[] sortedArray = {"阿安", "阿彬", "阿斌", "阿滨","阿兵", "阿冰", "阿冰冰", "阿超", "阿朝", "阿婵"};
 
         TimSort timSort =new TimSort(new ChineseComparator());
         timSort.sort(unsortedArray);
@@ -71,20 +71,20 @@ public class TimSortTest extends TestCase {
 
     @Test
     public void testSortedChineseWordsSort() throws Exception{
-        String[] unsortedArray = { "阿安", "阿斌", "阿滨", "阿彬", "阿冰", "阿兵", "阿冰冰", "阿婵", "阿超", "阿朝"};
-        String[] sortedArray = {"阿安", "阿斌", "阿滨", "阿彬", "阿冰", "阿兵", "阿冰冰", "阿婵", "阿超", "阿朝"};
+        String[] unsortedArray = { "阿安", "阿彬", "阿斌", "阿滨","阿兵", "阿冰", "阿冰冰", "阿超", "阿朝", "阿婵"};
+        String[] sortedArray = {"阿安", "阿彬", "阿斌", "阿滨","阿兵", "阿冰", "阿冰冰", "阿超", "阿朝", "阿婵"};
 
         TimSort timSort =new TimSort(new ChineseComparator());
         timSort.sort(unsortedArray);
 
         for(int i = 0; i<unsortedArray.length;i++)
-            assertTrue("Mismatch",unsortedArray[i].equals(sortedArray[i]));
+            assertTrue("Mismatch " + i,unsortedArray[i].equals(sortedArray[i]));
 
     }
     @Test
     public void testReverseSortedChineseWordsSort() throws Exception{
-        String[] unsortedArray = { "阿朝", "阿超", "阿婵", "阿冰冰", "阿兵", "阿冰", "阿彬", "阿滨", "阿斌", "阿安"};
-        String[] sortedArray = {"阿安", "阿斌", "阿滨", "阿彬", "阿冰", "阿兵", "阿冰冰", "阿婵", "阿超", "阿朝"};
+        String[] unsortedArray = { "阿婵", "阿朝", "阿超", "阿冰冰", "阿冰","阿兵", "阿滨", "阿斌", "阿彬","阿安"};
+        String[] sortedArray = {"阿安", "阿彬", "阿斌", "阿滨","阿兵", "阿冰", "阿冰冰", "阿超", "阿朝", "阿婵"};
 
         TimSort timSort =new TimSort(new ChineseComparator());
         timSort.sort(unsortedArray);
@@ -95,8 +95,8 @@ public class TimSortTest extends TestCase {
     }
     @Test
     public void testPartiallySortedChineseWordsSort() throws Exception{
-        String[] unsortedArray = { "阿安", "阿斌", "阿滨", "阿彬", "阿冰", "阿冰冰", "阿兵", "阿超", "阿婵", "阿朝"};
-        String[] sortedArray = {"阿安", "阿斌", "阿滨", "阿彬", "阿冰", "阿兵", "阿冰冰", "阿婵", "阿超", "阿朝"};
+        String[] unsortedArray = {"阿安", "阿彬", "阿斌", "阿滨","阿兵", "阿超", "阿冰冰",  "阿婵", "阿冰","阿朝"};
+        String[] sortedArray = {"阿安", "阿彬", "阿斌", "阿滨","阿兵", "阿冰", "阿冰冰", "阿超", "阿朝", "阿婵"};
 
         TimSort timSort =new TimSort(new ChineseComparator());
         timSort.sort(unsortedArray);
