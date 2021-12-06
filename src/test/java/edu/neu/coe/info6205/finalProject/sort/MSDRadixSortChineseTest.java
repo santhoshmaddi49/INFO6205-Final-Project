@@ -33,7 +33,7 @@ public class MSDRadixSortChineseTest extends TestCase {
     }
     @Test
     public void testReverseSortedChineseWordsSort() throws Exception{
-        String[] unsortedArray = { "阿朝", "阿超", "阿婵", "阿冰冰", "阿兵", "阿冰", "阿彬", "阿滨", "阿斌", "阿安"};
+        String[] unsortedArray ={"阿安", "阿斌", "阿滨", "阿彬", "阿冰", "阿兵", "阿冰冰", "阿婵", "阿超", "阿朝"};
         String[] sortedArray = {"阿安", "阿斌", "阿滨", "阿彬", "阿冰", "阿兵", "阿冰冰", "阿婵", "阿超", "阿朝"};
 
         MSDRadixSortChinese msdRadixSortChinese =new MSDRadixSortChinese();

@@ -44,7 +44,7 @@ public class Driver {
         c = 0;
         for(int i = 0; i<words1.length;i++)
         {
-            if(words1[i] != words2[i])
+            if(!words1[i].equals(words2[i]))
                 c++;
         }
         System.out.println(c + " Mismatches");
@@ -228,62 +228,62 @@ public class Driver {
     public static void main(String[] args)
     {
 
-        String teluguFilePath = "./csvFiles/TeluguWordsNew.csv";
-        String[] teluguWords = readWordsFromFile(teluguFilePath);
-        String[] teluguWords1 = readWordsFromFile(teluguFilePath);
+        String teluguFilePath = "./csvFiles/TeluguWords.csv";
+        String[] teluguWords = readWordsFromFile("./csvFiles/timSortedTelugu.csv");
+        String[] teluguWords1 = readWordsFromFile("./csvFiles/msdSortedTelugu.csv");
         String[] teluguWords2 = readWordsFromFile(teluguFilePath);
         String[] teluguWords3 = readWordsFromFile(teluguFilePath);
         String[] teluguWords4 = readWordsFromFile(teluguFilePath);
         Collections.reverse(Arrays.asList(teluguWords3));
-        Collections.reverse(Arrays.asList(teluguWords1));
+        //Collections.reverse(Arrays.asList(teluguWords1));
 
-        String shuffledChineseFilePath = "./csvFiles/shuffledChinese.txt";
+        String shuffledChineseFilePath = "./csvFiles/sampleChineseShuffled.txt";
         //String shuffledChineseFilePath = "./csvFiles/sampleChineseShuffled.txt";
-        String[] chineseWords = readWordsFromFile(shuffledChineseFilePath);
-        String[] chineseWords1 = readWordsFromFile(shuffledChineseFilePath);
+        String[] chineseWords = readWordsFromFile("./csvFiles/msdSortedChinese.csv");
+        String[] chineseWords1 = readWordsFromFile("./csvFiles/lsdSortedChinese.csv");
         String[] chineseWords2 = readWordsFromFile(shuffledChineseFilePath);
         String[] chineseWords3 = readWordsFromFile(shuffledChineseFilePath);
         String[] chineseWords4 = readWordsFromFile(shuffledChineseFilePath);
-        Collections.reverse(Arrays.asList(chineseWords1));
-        Collections.reverse(Arrays.asList(chineseWords3));
+        //Collections.reverse(Arrays.asList(chineseWords1));
+       // Collections.reverse(Arrays.asList(chineseWords3));
 
         String sortedChineseFilePath = "./csvFiles/sortedChinese.txt";
         //String sortedChineseFilePath = "./csvFiles/sampleChinesesorted.txt";
         String[] sortedChineseWords = readWordsFromFile(sortedChineseFilePath);
 
-        findMismatches(chineseWords1,chineseWords);
-
-        //Timsort Chinese
-        runChineseTimSort(chineseWords,false);
-
-       //Dual Pivot chinese
-        runChineseDualPivotSort(chineseWords1,false);
-
-        //Lsd chinese
-        runChineseLsdSort(chineseWords2,false);
-
-        //msd Chinese
-        runChineseMsdSort(chineseWords3,false);
-
-        //husky sort
-        runChineseHuskySort(chineseWords4,false);
+        findMismatches(teluguWords1,teluguWords);
 
 
 
         //Timsort telugu
-        runTeluguTimSort(teluguWords,false);
+//        runTeluguTimSort(teluguWords,true);
+//
+//        //Msd Telugu
+//        runTeluguMsdSort(teluguWords1,true);
+//
+//        // LSD Telugu
+//        runTeluguLsdSort(teluguWords2,true);
+//
+//        //Dual pivot
+//        runTeluguDualPivotSort(teluguWords3,true);
+//
+//        //Husky Telugu
+//        runTeluguHuskySort(teluguWords4,true);
 
-        //Msd Telugu
-        runTeluguMsdSort(teluguWords1,false);
-
-        // LSD Telugu
-        runTeluguLsdSort(teluguWords2,false);
-
-        //Dual pivot
-        runTeluguLsdSort(teluguWords3,false);
-
-        //Husky Telugu
-        runTeluguLsdSort(teluguWords4,false);
+//        //Timsort Chinese
+//        runChineseTimSort(chineseWords,true);
+//
+//       //Dual Pivot chinese
+//        runChineseDualPivotSort(chineseWords1,true);
+//
+//        //Lsd chinese
+//        runChineseLsdSort(chineseWords2,true);
+//
+//        //msd Chinese
+//        runChineseMsdSort(chineseWords3,true);
+//
+//        //husky sort
+//        runChineseHuskySort(chineseWords4,true);
 
 
     }
