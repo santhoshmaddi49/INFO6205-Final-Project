@@ -13,14 +13,11 @@ public class MSDRadixSortChinese {
      */
     public static void sort( String[] chineseWords) {
         int n = chineseWords.length;
-        System.out.println("start of conversion");
         String[] pinyinWords = PinyinHelperClass.chineseToPinyan(chineseWords);
-        System.out.println("end of conversion");
         pinyinAux = new String[n];
         chineseAux = new String[n];
-        System.out.println("start of sorted");
         sort(pinyinWords, chineseWords, 0, n-1, 0);
-        System.out.println("start of sorted");
+
     }
 
     /**

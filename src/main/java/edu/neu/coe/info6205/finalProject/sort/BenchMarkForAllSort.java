@@ -195,10 +195,11 @@ public class BenchMarkForAllSort {
 
 
         // Msd Sort for Chinese strings
-        runAllBenchmarksChinese("Msd radix",MSDRadixSort::sort,5);
+        runAllBenchmarksChinese("Msd radix",MSDRadixSortChinese::sort,5);
 
         // Lsd Sort for Chinese strings
-        runAllBenchmarksChinese("Lsd radix",lsdRadixSort::sort,5);
+        LSDRadixSortChinese lsdRadixSortChinese = new LSDRadixSortChinese();
+        runAllBenchmarksChinese("Lsd radix",lsdRadixSortChinese::sort,5);
 
         // Tim Sort for Chinese strings
         timSort = new TimSort(new ChineseComparator());

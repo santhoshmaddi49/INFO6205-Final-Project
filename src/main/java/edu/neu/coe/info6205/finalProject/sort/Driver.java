@@ -229,8 +229,8 @@ public class Driver {
     {
 
         String teluguFilePath = "./csvFiles/TeluguWords.csv";
-        String[] teluguWords = readWordsFromFile("./csvFiles/timSortedTelugu.csv");
-        String[] teluguWords1 = readWordsFromFile("./csvFiles/msdSortedTelugu.csv");
+        String[] teluguWords = readWordsFromFile(teluguFilePath);
+        String[] teluguWords1 = readWordsFromFile(teluguFilePath);
         String[] teluguWords2 = readWordsFromFile(teluguFilePath);
         String[] teluguWords3 = readWordsFromFile(teluguFilePath);
         String[] teluguWords4 = readWordsFromFile(teluguFilePath);
@@ -239,8 +239,8 @@ public class Driver {
 
         String shuffledChineseFilePath = "./csvFiles/sampleChineseShuffled.txt";
         //String shuffledChineseFilePath = "./csvFiles/sampleChineseShuffled.txt";
-        String[] chineseWords = readWordsFromFile("./csvFiles/msdSortedChinese.csv");
-        String[] chineseWords1 = readWordsFromFile("./csvFiles/lsdSortedChinese.csv");
+        String[] chineseWords = readWordsFromFile(shuffledChineseFilePath);
+        String[] chineseWords1 = readWordsFromFile(shuffledChineseFilePath);
         String[] chineseWords2 = readWordsFromFile(shuffledChineseFilePath);
         String[] chineseWords3 = readWordsFromFile(shuffledChineseFilePath);
         String[] chineseWords4 = readWordsFromFile(shuffledChineseFilePath);
@@ -251,7 +251,7 @@ public class Driver {
         //String sortedChineseFilePath = "./csvFiles/sampleChinesesorted.txt";
         String[] sortedChineseWords = readWordsFromFile(sortedChineseFilePath);
 
-        findMismatches(teluguWords1,teluguWords);
+        //findMismatches(teluguWords1,teluguWords);
 
 
 
@@ -259,7 +259,7 @@ public class Driver {
 //        runTeluguTimSort(teluguWords,true);
 //
 //        //Msd Telugu
-//        runTeluguMsdSort(teluguWords1,true);
+        //runTeluguMsdSort(teluguWords1,true);
 //
 //        // LSD Telugu
 //        runTeluguLsdSort(teluguWords2,true);
@@ -280,7 +280,7 @@ public class Driver {
 //        runChineseLsdSort(chineseWords2,true);
 //
 //        //msd Chinese
-//        runChineseMsdSort(chineseWords3,true);
+        runChineseMsdSort(chineseWords3,true);
 //
 //        //husky sort
 //        runChineseHuskySort(chineseWords4,true);
